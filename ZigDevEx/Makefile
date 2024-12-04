@@ -6,9 +6,9 @@ help:
 install_dep: ##Install zap
 	zig fetch --save "git+https://github.com/zigzap/zap#v0.9.1"
 
-runzap: ##Build & run zap
+run_zap: ##Build & run zap
 	zig build run
 
-cleanzig: ##Rm all cache
+zig_clean: ##Rm all cache
 	find . -type d -name "zig-out" | xargs rm -rf
 	find . -type d -name ".zig-cache" | xargs rm -rf

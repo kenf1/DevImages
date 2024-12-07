@@ -1,4 +1,4 @@
-name: Build ZigDev
+name: Build CppDev
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v6.10.0
         with:
           context: .
-          file: ./Dockerfiles/ZigDev
+          file: ./Dockerfiles/CppDev
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/kenf1/zigdev:latest
+          tags: ghcr.io/kenf1/cppdev:latest

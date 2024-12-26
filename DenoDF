@@ -1,0 +1,4 @@
+FROM denoland/deno:ubuntu-2.1.4
+
+RUN apt-get update && apt-get install -y git \
+    make

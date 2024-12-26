@@ -1,0 +1,25 @@
+{
+	"name": "Existing Dockerfile",
+	"build": {
+		// Sets the run context to one level up instead of the .devcontainer folder.
+		"context": "..",
+		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+		"dockerfile": "../Dockerfile"
+	},
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"formulahendry.code-runner",
+				"ms-vscode.live-server",
+				"yoavbls.pretty-ts-errors",
+				"mhutchie.git-graph",
+				"denoland.vscode-deno"
+			],
+			"settings": {
+				"code-runner.enableAppInsights": false
+			}
+		}
+	}
+}

@@ -1,4 +1,4 @@
-.PHONY: help install_dep run_zap zig_clean compile
+.PHONY: help install_dep run_zap zig_clean compile grm
 
 help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} \
@@ -22,5 +22,5 @@ compile: ##Compile create_template
 	deno compile main.ts && \
 	mv create_template ../CreateTemplate
 
-mrg: ##Run main.go
+grm: ##Run main.go
 	cd create_template && go run *.go

@@ -3,15 +3,14 @@ package main
 import (
 	"fmt"
 	"strings"
-	"unicode"
 )
 
 func main() {
 	lang := promptLang()
 	fmt.Println("Entered:", lang)
 
-	WF_PATH, DF_PATH := createTemplate(lang)
-	fmt.Println(WF_PATH, DF_PATH)
+	lang_template, WF_PATH := ctWrapper(lang)
+	fmt.Println(WF_PATH, "\n", lang_template)
 }
 
 // prompt user for lang input, returns all lowercase lang
@@ -25,20 +24,57 @@ func promptLang() string {
 
 // capitalize 1st letter of string
 func firstLetterCap(s string) string {
-	if len(s) == 0 {
-		return s
-	}
-	runes := []rune(s)
-	runes[0] = unicode.ToUpper(runes[0])
-	return string(runes)
+	return strings.ToUpper(s[:1]) + s[1:]
 }
 
-// create template using all lowercase lang name
-func createTemplate(lang string) (string, string) {
+// create template wrapper (only req user input lang)
+func ctWrapper(lang string) (string, string) {
 	ulang := firstLetterCap(lang)
+	lang_template := ctLogic(ulang, lang)
+	WF_PATH := fmt.Sprintf("./.github/workflows/Build%sDev.yml", ulang)
 
-	DF_PATH := fmt.Sprintf("./Dockerfiles/%sDev", ulang)
-	WF_PATH := fmt.Sprintf("./.github/workflows/Build%sDev.yml", lang)
+	return lang_template, WF_PATH
+}
 
-	return WF_PATH, DF_PATH
+// create template logic (to be used inside ctWrapper) (wip)
+func ctLogic(ulang string, lang string) string {
+	raw_template := `name: Build ${ulang}Dev
+
+	on:
+	  workflow_dispatch:
+	
+	jobs:
+	  build-and-push:
+		runs-on: ubuntu-latest
+		steps:
+		  - name: Checkout code
+			uses: actions/checkout@v4
+	
+		  - name: Setup QEMU
+			uses: docker/setup-qemu-action@v3
+	
+		  - name: Setup Docker Buildx
+			uses: docker/setup-buildx-action@v3
+	
+		  - name: Login to GHCR
+			uses: docker/login-action@v3
+			with:
+			  registry: ghcr.io
+			  username: ${{ github.actor }}
+			  password: ${{ secrets.GITHUB_TOKEN }}
+	
+		  - name: Build and push Docker image
+			uses: docker/build-push-action@v6
+			with:
+			  context: .
+			  file: ./Dockerfiles/${ulang}Dev
+			  push: true
+			  platforms: linux/amd64
+			  tags: ghcr.io/kenf1/${lang}dev:latest`
+
+	//replace placeholders (ulang, lang)
+	return strings.ReplaceAll(
+		strings.ReplaceAll(raw_template, "${ulang}", ulang),
+		"${lang}", lang,
+	)
 }

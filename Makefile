@@ -21,3 +21,6 @@ compile: ##Compile create_template
 	cd create_template && \
 	deno compile main.ts && \
 	mv create_template ../CreateTemplate
+
+mrg: ##Run main.go
+	cd create_template && go run *.go

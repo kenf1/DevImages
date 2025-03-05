@@ -1,4 +1,4 @@
-.PHONY: help install_dep run_zap zig_clean compile grm
+.PHONY: help install_dep run_zap zig_clean compile grm buildct
 
 help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} \
@@ -24,3 +24,6 @@ compile: ##Compile create_template
 
 grm: ##Run main.go
 	cd create_template && go run *.go
+
+buildct: ##Build binary
+	cd create_template && go build

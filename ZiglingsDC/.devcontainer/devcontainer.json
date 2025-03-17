@@ -1,10 +1,9 @@
 {
 	"name": "Existing Dockerfile",
-	"build": {		
+	"build": {
 		"context": "..",
 		"dockerfile": "../ZiglingsDC"
 	},
-
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -14,8 +13,8 @@
 			"settings": {
 				"zig.zls.enabled": "on",
 				//get version from: https://ziglang.org/download/index.json
-				"zig.version": "0.14.0-dev.3267+59dc15fa0"
+				"zig.version": "0.15.0-dev.62+ea57fb55e"
 			}
-		}		
+		}
 	}
 }

@@ -1,4 +1,4 @@
-.PHONY: help install_dep run_zap zig_clean compile grm buildct
+.PHONY: help install_dep run_zap clean compile grm buildct
 
 help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} \
@@ -13,7 +13,7 @@ run_zap: ##Build & run zap
 	cd ZigDevEx && \
 	zig build run
 
-zig_clean: ##Rm all cache
+clean: ##Rm all cache
 	find . -type d -name "zig-out" | xargs rm -rf
 	find . -type d -name ".zig-cache" | xargs rm -rf
 

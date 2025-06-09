@@ -1,4 +1,4 @@
-name: Build RC
+name: Build RC_dash
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfiles/RC
+          file: ./Dockerfiles/RC_dash
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/kenf1/rc:latest
+          tags: ghcr.io/kenf1/rcdash:latest

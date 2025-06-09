@@ -3,11 +3,7 @@ FROM rocker/tidyverse:4.5.0
 
 #rmarkdown specific
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    wget \ 
-    graphviz \ 
-    # texlive-latex-extra \ 
-    lmodern \ 
-    perl && \ 
+    wget graphviz lmodern perl && \ 
     /rocker_scripts/install_pandoc.sh && \
     install2.r rmarkdown
 
@@ -17,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     libharfbuzz-dev libfribidi-dev \
     libfontconfig1-dev libfreetype6-dev
 
-COPY ./Setup/rc_rmd.R ./rc_rmd.R
+COPY ./RC/Setup/rc_rmd.R ./rc_rmd.R
 RUN Rscript -e "source('./rc_rmd.R')"
 
 ENV RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc

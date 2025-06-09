@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfiles/RC_dash
+          file: ./RC/RC_dash
           push: true
           platforms: linux/amd64
           tags: ghcr.io/kenf1/rcdash:latest

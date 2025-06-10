@@ -2,6 +2,11 @@ name: Build CppDev
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfiles/CppDev
 
 jobs:
   build-and-push:
@@ -30,4 +35,4 @@ jobs:
           file: ./Dockerfiles/CppDev
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/kenf1/cppdev:latest
+          tags: ghcr.io/kenf1/devimage:cppdev

@@ -2,6 +2,13 @@ name: Build RC_dash
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - RC/**
+    paths-ignore:
+      - RC/RC_base
 
 jobs:
   build-and-push:
@@ -30,4 +37,4 @@ jobs:
           file: ./RC/RC_dash
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/kenf1/rcdash:latest
+          tags: ghcr.io/kenf1/devimage:rcdash

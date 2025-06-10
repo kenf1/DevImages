@@ -2,6 +2,11 @@ name: Build ZigDev
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfiles/ZigDev
 
 jobs:
   build-and-push:
@@ -29,5 +34,5 @@ jobs:
           context: .
           file: ./Dockerfiles/ZigDev
           push: true
-          platforms: linux/amd64
-          tags: ghcr.io/kenf1/zigdev:latest
+          platforms: linux/amd64, linux/arm64
+          tags: ghcr.io/kenf1/devimage:zigdev

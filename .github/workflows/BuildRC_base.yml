@@ -2,6 +2,14 @@ name: Build RC_base
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - RC/**
+    paths-ignore:
+      - RC/RC_dash
+      - RC/Setup/**
 
 jobs:
   build-and-push:
@@ -30,4 +38,4 @@ jobs:
           file: ./RC/RC_base
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/kenf1/rcbase:latest
+          tags: ghcr.io/kenf1/devimage:rcbase

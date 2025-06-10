@@ -1,4 +1,4 @@
-name: Build node ts
+name: Build PyDS
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - Dockerfiles/NodeTS
+      - PyDS/**
 
 jobs:
   build-and-push:
@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfiles/NodeTS
+          file: ./PyDS/Dockerfile
           push: true
-          platforms: linux/amd64
-          tags: ghcr.io/kenf1/devimage:nodets
+          platforms: linux/amd64, linux/arm64
+          tags: ghcr.io/kenf1/devimage:pyds

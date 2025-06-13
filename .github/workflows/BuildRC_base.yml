@@ -7,9 +7,6 @@ on:
       - main
     paths:
       - RC/**
-    # paths-ignore:
-    #   - RC/RC_dash
-    #   - RC/Setup/**
 
 jobs:
   build-and-push:

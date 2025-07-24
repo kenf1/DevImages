@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     libharfbuzz-dev libfribidi-dev \
     libfontconfig1-dev libfreetype6-dev
 
-COPY ./rc_rmd.R ./rc_rmd.R
+COPY ./Dockerfiles/rc_rmd.R ./rc_rmd.R
 RUN Rscript -e "source('./rc_rmd.R')"
 
 ENV RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc

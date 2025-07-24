@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - tests
     paths:
       - Dockerfiles/rc_dash.dockerfile
       - Dockerfiles/rc_rmd.R

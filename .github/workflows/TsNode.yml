@@ -1,4 +1,4 @@
-name: Build node ts
+name: Build tsnode
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - Dockerfiles/NodeTS
+      - Dockerfiles/tsnode.dockerfile
 
 jobs:
   build-and-push:
@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfiles/NodeTS
+          file: ./Dockerfiles/tsnode.dockerfile
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/kenf1/devimage:nodets
+          tags: ghcr.io/kenf1/devimage:tsnode

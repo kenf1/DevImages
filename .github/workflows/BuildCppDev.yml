@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - Dockerfiles/CppDev
+      - Dockerfiles/cpp_dev.dockerfile
 
 jobs:
   build-and-push:
@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfiles/CppDev
+          file: ./Dockerfiles/cpp_dev.dockerfile
           push: true
           platforms: linux/amd64
           tags: ghcr.io/kenf1/devimage:cppdev

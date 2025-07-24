@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - Dockerfiles/ZigDev
+      - Dockerfiles/zig_dev.dockerfile
 
 jobs:
   build-and-push:
@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfiles/ZigDev
+          file: ./Dockerfiles/zig_dev.dockerfile
           push: true
           platforms: linux/amd64, linux/arm64
           tags: ghcr.io/kenf1/devimage:zigdev

@@ -6,7 +6,8 @@ on:
     branches:
       - main
     paths:
-      - PyDS/**
+      - Dockerfiles/pyds.dockerfile
+      - Dockerfiles/pyds_requirements.txt
 
 jobs:
   build-and-push:
@@ -32,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./PyDS/Dockerfile
+          file: ./Dockerfiles/pyds.dockerfile
           push: true
           platforms: linux/amd64, linux/arm64
           tags: ghcr.io/kenf1/devimage:pyds

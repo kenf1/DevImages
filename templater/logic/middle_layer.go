@@ -1,32 +1,6 @@
-package main
+package logic
 
-import (
-	"fmt"
-	"strings"
-)
-
-// prompt user for lang input, returns all lowercase lang
-func promptLang() string {
-	var lang string
-	fmt.Println("Enter language name: ")
-	fmt.Scanf("%s", &lang)
-
-	return strings.ToLower(lang)
-}
-
-// capitalize 1st letter of string
-func firstLetterCap(s string) string {
-	return strings.ToUpper(s[:1]) + s[1:]
-}
-
-// create template wrapper (only req user input lang)
-func ctWrapper(lang string) (string, string) {
-	ulang := firstLetterCap(lang)
-	lang_template := ctLogic(ulang, lang)
-	WF_PATH := fmt.Sprintf("../.github/workflows/Build%sDev.yml", ulang)
-
-	return lang_template, WF_PATH
-}
+import "strings"
 
 // create template logic (to be used inside ctWrapper) (wip)
 func ctLogic(ulang string, lang string) string {

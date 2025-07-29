@@ -1,4 +1,4 @@
-.PHONY: help install_dep run_zap clean compile grm buildct
+.PHONY: help install_dep run_zap clean compile grm buildct lint
 
 help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} \
@@ -23,7 +23,10 @@ compile: ##Compile create_template
 	mv create_template ../CreateTemplate
 
 grm: ##Run main.go
-	cd create_template && go run *.go
+	cd templater && go run *.go
 
 buildct: ##Build binary
-	cd create_template && go build
+	cd templater && go build
+
+lint: ##Run lint
+	cd templater && golangci-lint run

@@ -28,5 +28,5 @@ grm: ##Run main.go
 buildct: ##Build binary
 	cd templater && go build
 
-lint:
+lint: ##Run lint
 	cd templater && golangci-lint run

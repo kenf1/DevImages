@@ -13,10 +13,6 @@ run_zap: ##Build & run zap
 	cd ZigDevEx && \
 	zig build run
 
-clean: ##Rm all cache
-	find . -type d -name "zig-out" | xargs rm -rf
-	find . -type d -name ".zig-cache" | xargs rm -rf
-
 compile: ##Compile create_template
 	cd create_template && \
 	deno compile main.ts && \
@@ -28,5 +24,16 @@ grm: ##Run main.go
 buildct: ##Build binary
 	cd templater && go build
 
-lint: ##Run lint
+lint: ##Lint Go
 	cd templater && golangci-lint run
+
+fmt: ##Format python
+	ruff format
+	find . -type d -name ".ruff_cache" | xargs rm -rf
+
+clean: fmt ##Cleanup entire repo
+	find . -type d -name "zig-out" | xargs rm -rf
+	find . -type d -name ".zig-cache" | xargs rm -rf
+
+	find . -type d -name "__pycache__" | xargs rm -rf
+	find . -type d -name ".pytest_cache" | xargs rm -rf

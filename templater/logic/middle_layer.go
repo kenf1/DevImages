@@ -2,7 +2,18 @@ package logic
 
 import "strings"
 
-func CtLogic(ulang string, lang string) string {
+func replacePlaceholders(rawTemplate string, replacements map[string]string) string {
+	result := rawTemplate
+
+	for key, val := range replacements {
+		placeholder := "${" + key + "}"
+		result = strings.ReplaceAll(result, placeholder, val)
+	}
+
+	return result
+}
+
+func CtLogic(name, ulang, lang string) string {
 	raw_template := `name: Build ${ulang}Dev
 
 on:
@@ -38,13 +49,14 @@ jobs:
           file: ./Dockerfiles/${ulang}_dev.dockerfile
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/kenf1/${lang}dev:latest
+          tags: ghcr.io/${name}/${lang}dev:latest
 `
 
-	//replace placeholders (ulang, lang)
-	return strings.ReplaceAll(
-		strings.ReplaceAll(
-			raw_template, "${ulang}", ulang),
-		"${lang}", lang,
-	)
+	replacements := map[string]string{
+		"name":  name,
+		"ulang": ulang,
+		"lang":  lang,
+	}
+
+	return replacePlaceholders(raw_template, replacements)
 }

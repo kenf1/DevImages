@@ -26,10 +26,14 @@ func WriteYAML(filename string, contents string) error {
 	return nil
 }
 
-func CtWrapper(lang string) (string, string) {
-	ulang := capFirstLetter(lang)
+func CtWrapper(name, lang string) (string, string) {
+	ulang, err := capFirstLetter(lang)
+	if err != nil {
+		fmt.Println(err)
+		return "", ""
+	}
 
-	lang_template := logic.CtLogic(ulang, lang)
+	lang_template := logic.CtLogic(name, ulang, lang)
 	WF_PATH := fmt.Sprintf("../.github/workflows/Build%sDev.yml", ulang)
 
 	return lang_template, WF_PATH

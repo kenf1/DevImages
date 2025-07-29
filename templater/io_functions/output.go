@@ -3,6 +3,7 @@ package iofunctions
 import (
 	"fmt"
 	"os"
+	"templater/logic"
 )
 
 func WriteYAML(filename string, contents string) error {
@@ -26,8 +27,9 @@ func WriteYAML(filename string, contents string) error {
 }
 
 func CtWrapper(lang string) (string, string) {
-	ulang := firstLetterCap(lang)
-	lang_template := ctLogic(ulang, lang)
+	ulang := capFirstLetter(lang)
+
+	lang_template := logic.CtLogic(ulang, lang)
 	WF_PATH := fmt.Sprintf("../.github/workflows/Build%sDev.yml", ulang)
 
 	return lang_template, WF_PATH

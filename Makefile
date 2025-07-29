@@ -23,7 +23,7 @@ compile: ##Compile create_template
 	mv create_template ../CreateTemplate
 
 grm: ##Run main.go
-	cd create_template && go run *.go
+	cd templater && go run *.go
 
 buildct: ##Build binary
-	cd create_template && go build
+	cd templater && go build

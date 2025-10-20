@@ -1,0 +1,26 @@
+{
+    "name": "LinguistDev",
+    "build": {
+        "context": "../..",
+        "dockerfile": "../../Dockerfiles/linguist_dev.dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "tamasfe.even-better-toml",
+                "barbosshack.crates-io",
+                "formulahendry.code-runner",
+                "gxl.git-graph-3",
+                "esbenp.prettier-vscode"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "code-runner.enableAppInsights": false,
+                "chat.mcp.enabled": false,
+                "telemetry.editStats.enabled": false,
+                "telemetry.feedback.enabled": false
+            }
+        }
+    }
+}

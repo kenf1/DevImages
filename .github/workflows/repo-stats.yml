@@ -1,0 +1,30 @@
+name: Repo stats (linguist)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Build Docker image
+        run: docker build -t repo-analyzer:latest .
+
+      - name: Run repo-analyzer
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            repo-analyzer:latest \
+            bash -c "repo-analyzer --remote-url \
+            https://github.com/gokh4nozturk/repo-analyzer \
+            --output-format json > /workspace/analysis.json"
+
+      - name: Upload analysis result
+        uses: actions/upload-artifact@v4
+        with:
+          name: repo-analysis
+          path: analysis.json
+          retention-days: 7

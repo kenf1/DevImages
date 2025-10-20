@@ -1,4 +1,4 @@
-.PHONY: install_dep run_zap clean compile grm buildct lint
+.PHONY: install_dep run_zap compile grm buildct lint parse_json fmt clean
 
 install_dep: #Install zap
 	cd ZigDevEx && \
@@ -22,12 +22,18 @@ buildct: #Build binary
 lint: #Lint Go
 	cd templater && golangci-lint run
 
+parse_json: #Build parse_json
+	cd parse_json && xmake --root parse_json && \
+	cp build/*/*/release/parse_json ../data/parse_json
+
 fmt: #Format python
 	ruff format
 	find . -type d -name ".ruff_cache" | xargs rm -rf
 
-clean: fmt #Cleanup entire repo
+clean: #Cleanup entire repo
 	find . -type d -name "zig-out" | xargs rm -rf
 	find . -type d -name ".zig-cache" | xargs rm -rf
 	find . -type d -name "__pycache__" | xargs rm -rf
 	find . -type d -name ".pytest_cache" | xargs rm -rf
+	find . -type d -name ".xmake" | xargs rm -rf
+	find . -type d -name "build" | xargs rm -rf

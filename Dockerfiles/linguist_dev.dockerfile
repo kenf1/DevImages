@@ -1,4 +1,4 @@
-FROM rust:1.90.0-slim
+FROM rust:1.91.0-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential libssl-dev pkg-config curl git neovim && \

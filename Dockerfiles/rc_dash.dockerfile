@@ -1,5 +1,5 @@
 #base + tidyverse
-FROM rocker/tidyverse:4.5.1
+FROM rocker/tidyverse:4.5.2
 
 #rmarkdown specific
 RUN apt-get update && apt-get install -y --no-install-recommends \

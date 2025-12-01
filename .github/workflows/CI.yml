@@ -1,4 +1,4 @@
-name: golangci-lint
+name: Run go lint
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Build RC_dash
+name: Build DotnetDev
 
 on:
   workflow_dispatch:
@@ -7,8 +7,7 @@ on:
       - main
       - tests
     paths:
-      - Dockerfiles/rc_dash.dockerfile
-      - Dockerfiles/rc_rmd.R
+      - Dockerfiles/dotnet_dev.dockerfile
 
 jobs:
   build-and-push:
@@ -34,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfiles/rc_dash.dockerfile
+          file: ./Dockerfiles/dotnet_dev.dockerfile
           push: true
-          platforms: linux/amd64
-          tags: ghcr.io/kenf1/devimage:rcdash
+          platforms: linux/amd64, linux/arm64
+          tags: ghcr.io/kenf1/devimage:dotnetdev

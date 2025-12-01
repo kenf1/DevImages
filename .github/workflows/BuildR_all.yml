@@ -1,4 +1,4 @@
-name: Build RC_base
+name: Build RC base and dash
 
 on:
   workflow_dispatch:
@@ -8,6 +8,8 @@ on:
       - tests
     paths:
       - Dockerfiles/rc_base.dockerfile
+      - Dockerfiles/rc_dash.dockerfile
+      - Dockerfiles/rc_rmd.R
 
 jobs:
   build-and-push:
@@ -37,3 +39,12 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: ghcr.io/kenf1/devimage:rcbase
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfiles/rc_dash.dockerfile
+          push: true
+          platforms: linux/amd64
+          tags: ghcr.io/kenf1/devimage:rcdash

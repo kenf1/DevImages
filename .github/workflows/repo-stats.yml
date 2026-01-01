@@ -23,7 +23,7 @@ jobs:
             --output-format json > /workspace/analysis.json"
 
       - name: Upload analysis result
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: repo-analysis
           path: analysis.json

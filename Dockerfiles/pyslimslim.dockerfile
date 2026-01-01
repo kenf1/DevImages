@@ -1,6 +1,6 @@
 #slim slim
 #slim + common packages
-FROM python:3.14.0-slim
+FROM python:3.14.2-slim
 
 RUN apt-get update && apt-get install -y \
     build-essential curl git && \

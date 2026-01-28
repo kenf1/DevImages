@@ -1,13 +1,13 @@
-name: Build tsnode
+name: Build RC ide
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-      - tests
     paths:
-      - Dockerfiles/tsnode.dockerfile
+      - Dockerfiles/rc_ide.dockerfile
+      - Dockerfiles/rstudio_ide.r
 
 jobs:
   build-and-push:
@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfiles/tsnode.dockerfile
+          file: ./Dockerfiles/rc_ide.dockerfile
           push: true
           platforms: linux/amd64, linux/arm64
-          tags: ghcr.io/kenf1/devimage:tsnode
+          tags: ghcr.io/kenf1/devimage:rcide

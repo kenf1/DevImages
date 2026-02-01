@@ -1,7 +1,5 @@
-FROM golang:1.25.5-bookworm
+FROM golang:1.25.6-alpine3.22
 RUN go telemetry off
 
-RUN apt-get update && \
-    apt-get install -y curl git make && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache curl git make
 RUN go install github.com/air-verse/air@latest

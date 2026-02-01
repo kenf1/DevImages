@@ -1,4 +1,4 @@
-FROM emscripten/emsdk:4.0.22
+FROM emscripten/emsdk:5.0.0
 
 RUN apt-get update && apt-get install -y \
     build-essential curl git neovim clang-format \
